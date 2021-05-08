@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 800;
 const CANVAS_HEIGHT = canvas.height = 700;
 
-let gameSpeed = 10;
+let gameSpeed = 5;
 const backgroundLayer1 = new Image();
 backgroundLayer1.src = './layer-1.png';
 const backgroundLayer2 = new Image();
@@ -43,18 +43,20 @@ class Layer{
     }
 }
 
-const layer1 = new Layer(backgroundLayer1, 0.5);
+const layer1 = new Layer(backgroundLayer1, 0.2);
 const layer2 = new Layer(backgroundLayer2, 0.5);
-const layer3 = new Layer(backgroundLayer3, 0.5);
-const layer4 = new Layer(backgroundLayer4, 0.5);
-const layer5 = new Layer(backgroundLayer5, 0.5);
+const layer3 = new Layer(backgroundLayer3, 0.6);
+const layer4 = new Layer(backgroundLayer4, 0.8);
+const layer5 = new Layer(backgroundLayer5, 0.1);
 
-
+const gameObjects = [layer1, layer2, layer3, layer4, layer5];
 
 function animate(){
-    ctx.clearRect(0,0, CANVAS_WIDTH, CANVAS_WIDTH);
-    layer4.update();
-    layer4.draw(); 
+    ctx.clearRect(0,0, CANVAS_WIDTH, CANVAS_WIDTH);    
+    gameObjects.forEach(object =>{
+        object.update();
+        object.draw();
+    }) ;
     requestAnimationFrame(animate);
 };
 animate();
